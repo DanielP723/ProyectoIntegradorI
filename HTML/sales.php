@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Inventory</title>
+	<title>Sales</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/sweetalert2.css">
 	<link rel="stylesheet" href="css/material.min.css">
@@ -22,6 +22,73 @@
 	<script src="js/main.js" ></script>
 </head>
 <body>
+	<!-- Notifications area -->
+	<section class="full-width container-notifications">
+		<div class="full-width container-notifications-bg btn-Notification"></div>
+	    <section class="NotificationArea">
+	        <div class="full-width text-center NotificationArea-title tittles">Notifications <i class="zmdi zmdi-close btn-Notification"></i></div>
+	        <a href="#" class="Notification" id="notifation-unread-1">
+	            <div class="Notification-icon"><i class="zmdi zmdi-accounts-alt bg-info"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle"></i>
+	                    <strong>New User Registration</strong> 
+	                    <br>
+	                    <small>Just Now</small>
+	                </p>
+	            </div>
+	        	<div class="mdl-tooltip mdl-tooltip--left" for="notifation-unread-1">Notification as UnRead</div> 
+	        </a>
+	        <a href="#" class="Notification" id="notifation-read-1">
+	            <div class="Notification-icon"><i class="zmdi zmdi-cloud-download bg-primary"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle-o"></i>
+	                    <strong>New Updates</strong> 
+	                    <br>
+	                    <small>30 Mins Ago</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-1">Notification as Read</div>
+	        </a>
+	        <a href="#" class="Notification" id="notifation-unread-2">
+	            <div class="Notification-icon"><i class="zmdi zmdi-upload bg-success"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle"></i>
+	                    <strong>Archive uploaded</strong> 
+	                    <br>
+	                    <small>31 Mins Ago</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-unread-2">Notification as UnRead</div>
+	        </a> 
+	        <a href="#" class="Notification" id="notifation-read-2">
+	            <div class="Notification-icon"><i class="zmdi zmdi-mail-send bg-danger"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle-o"></i>
+	                    <strong>New Mail</strong> 
+	                    <br>
+	                    <small>37 Mins Ago</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-2">Notification as Read</div>
+	        </a>
+	        <a href="#" class="Notification" id="notifation-read-3">
+	            <div class="Notification-icon"><i class="zmdi zmdi-folder bg-primary"></i></div>
+	            <div class="Notification-text">
+	                <p>
+	                    <i class="zmdi zmdi-circle-o"></i>
+	                    <strong>Folder delete</strong> 
+	                    <br>
+	                    <small>1 hours Ago</small>
+	                </p>
+	            </div>
+	            <div class="mdl-tooltip mdl-tooltip--left" for="notifation-read-3">Notification as Read</div>
+	        </a>  
+	    </section>
+	</section>
 	<!-- navLateral -->
 	<section class="full-width navLateral">
 		<div class="full-width navLateral-bg btn-menu"></div>
@@ -43,7 +110,7 @@
 			<nav class="full-width">
 				<ul class="full-width list-unstyle menu-principal">
 					<li class="full-width">
-						<a href="home.html" class="full-width">
+						<a href="home.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-view-dashboard"></i>
 							</div>
@@ -66,7 +133,7 @@
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 							<li class="full-width">
-								<a href="admin.html" class="full-width">
+								<a href="admin.php" class="full-width">
 									<div class="navLateral-body-cl">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -76,7 +143,7 @@
 								</a>
 							</li>
 							<li class="full-width">
-								<a href="client.html" class="full-width">
+								<a href="client.php" class="full-width">
 									<div class="navLateral-body-cl">
 										<i class="zmdi zmdi-accounts"></i>
 									</div>
@@ -89,7 +156,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="products.html" class="full-width">
+						<a href="products.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-washing-machine"></i>
 							</div>
@@ -100,7 +167,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="sales.html" class="full-width">
+						<a href="sales.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
@@ -111,7 +178,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="inventory.html" class="full-width">
+						<a href="inventory.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-store"></i>
 							</div>
@@ -183,7 +250,7 @@
 		</div>
 		<section class="full-width header-well">
 			<div class="full-width header-well-icon">
-				<i class="zmdi zmdi-store"></i>
+				<i class="zmdi zmdi-shopping-cart"></i>
 			</div>
 			<div class="full-width header-well-text">
 				<p class="text-condensedLight">
@@ -198,60 +265,39 @@
 					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
 						<thead>
 							<tr>
-								<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-								<th>Código</th>
-								<th>Cantidad</th>
-								<th>Precio</th>
+								<th class="mdl-data-table__cell--non-numeric">Fecha</th>
+								<th>Cliente</th>
+								<th>Método de pago</th>
+								<th>Total</th>
 								<th>Opciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
-								<td>Product Code</td>
-								<td>7</td>
+								<td class="mdl-data-table__cell--non-numeric">11/04/2016</td>
+								<td>Client name</td>
+								<td>Efectivo</td>
 								<td>$77</td>
 								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
 							</tr>
 							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
-								<td>Product Code</td>
-								<td>7</td>
+								<td class="mdl-data-table__cell--non-numeric">11/04/2016</td>
+								<td>Client name</td>
+								<td>Efectivo</td>
 								<td>$77</td>
 								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
 							</tr>
 							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
-								<td>Product Code</td>
-								<td>7</td>
+								<td class="mdl-data-table__cell--non-numeric">11/04/2016</td>
+								<td>Client name</td>
+								<td>Efectivo</td>
 								<td>$77</td>
 								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
 							</tr>
 							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
-								<td>Product Code</td>
-								<td>7</td>
-								<td>$77</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
-								<td>Product Code</td>
-								<td>7</td>
-								<td>$77</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
-								<td>Product Code</td>
-								<td>7</td>
-								<td>$77</td>
-								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
-							</tr>
-							<tr>
-								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
-								<td>Product Code</td>
-								<td>7</td>
+								<td class="mdl-data-table__cell--non-numeric">11/04/2016</td>
+								<td>Client name</td>
+								<td>Efectivo</td>
 								<td>$77</td>
 								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
 							</tr>

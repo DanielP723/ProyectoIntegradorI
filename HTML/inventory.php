@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
+	<title>Inventory</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/sweetalert2.css">
 	<link rel="stylesheet" href="css/material.min.css">
@@ -22,7 +22,6 @@
 	<script src="js/main.js" ></script>
 </head>
 <body>
-
 	<!-- navLateral -->
 	<section class="full-width navLateral">
 		<div class="full-width navLateral-bg btn-menu"></div>
@@ -44,7 +43,7 @@
 			<nav class="full-width">
 				<ul class="full-width list-unstyle menu-principal">
 					<li class="full-width">
-						<a href="home.html" class="full-width">
+						<a href="home.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-view-dashboard"></i>
 							</div>
@@ -67,7 +66,7 @@
 						</a>
 						<ul class="full-width menu-principal sub-menu-options">
 							<li class="full-width">
-								<a href="admin.html" class="full-width">
+								<a href="admin.php" class="full-width">
 									<div class="navLateral-body-cl">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -77,7 +76,7 @@
 								</a>
 							</li>
 							<li class="full-width">
-								<a href="client.html" class="full-width">
+								<a href="client.php" class="full-width">
 									<div class="navLateral-body-cl">
 										<i class="zmdi zmdi-accounts"></i>
 									</div>
@@ -90,7 +89,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="products.html" class="full-width">
+						<a href="products.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-washing-machine"></i>
 							</div>
@@ -101,7 +100,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="sales.html" class="full-width">
+						<a href="sales.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
@@ -112,7 +111,7 @@
 					</li>
 					<li class="full-width divider-menu-h"></li>
 					<li class="full-width">
-						<a href="inventory.html" class="full-width">
+						<a href="inventory.php" class="full-width">
 							<div class="navLateral-body-cl">
 								<i class="zmdi zmdi-store"></i>
 							</div>
@@ -182,46 +181,85 @@
 				</nav>
 			</div>
 		</div>
-		<section class="full-width text-center" style="padding: 40px 0;">
-			<h3 class="text-center tittles">INICIO</h3>
-			<!-- Tiles -->
-			<article class="full-width tile">
-				<div class="tile-text">
-					<span class="text-condensedLight">
-						2<br>
-						<small>Administradores</small>
-					</span>
-				</div>
-				<i class="zmdi zmdi-account tile-icon"></i>
-			</article>
-			<article class="full-width tile">
-				<div class="tile-text">
-					<span class="text-condensedLight">
-						71<br>
-						<small>Clientes</small>
-					</span>
-				</div>
-				<i class="zmdi zmdi-accounts tile-icon"></i>
-			</article>
-			<article class="full-width tile">
-				<div class="tile-text">
-					<span class="text-condensedLight">
-						9<br>
-						<small>Categorias</small>
-					</span>
-				</div>
-				<i class="zmdi zmdi-label tile-icon"></i>
-			</article>
-			<article class="full-width tile">
-				<div class="tile-text">
-					<span class="text-condensedLight">
-						121<br>
-						<small>Productos</small>
-					</span>
-				</div>
-				<i class="zmdi zmdi-washing-machine tile-icon"></i>
-			</article>
+		<section class="full-width header-well">
+			<div class="full-width header-well-icon">
+				<i class="zmdi zmdi-store"></i>
+			</div>
+			<div class="full-width header-well-text">
+				<p class="text-condensedLight">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde aut nulla accusantium minus corporis accusamus fuga harum natus molestias necessitatibus.
+				</p>
+			</div>
 		</section>
-		
+		<div class="full-width divider-menu-h"></div>
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+				<div class="table-responsive">
+					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+						<thead>
+							<tr>
+								<th class="mdl-data-table__cell--non-numeric">Nombre</th>
+								<th>Código</th>
+								<th>Cantidad</th>
+								<th>Precio</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
+								<td>Product Code</td>
+								<td>7</td>
+								<td>$77</td>
+								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
+								<td>Product Code</td>
+								<td>7</td>
+								<td>$77</td>
+								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
+								<td>Product Code</td>
+								<td>7</td>
+								<td>$77</td>
+								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
+								<td>Product Code</td>
+								<td>7</td>
+								<td>$77</td>
+								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
+								<td>Product Code</td>
+								<td>7</td>
+								<td>$77</td>
+								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
+								<td>Product Code</td>
+								<td>7</td>
+								<td>$77</td>
+								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric">Product Name</td>
+								<td>Product Code</td>
+								<td>7</td>
+								<td>$77</td>
+								<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

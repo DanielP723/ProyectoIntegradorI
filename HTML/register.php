@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Login</title>
+	<title>Register</title>
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/sweetalert2.css">
 	<link rel="stylesheet" href="css/material.min.css">
@@ -27,9 +27,17 @@
 			<p class="text-center" style="font-size: 80px;">
 				<i class="zmdi zmdi-account-circle"></i>
 			</p>
-			<p class="text-center text-condensedLight">Iniciar sesión con su cuenta</p>
-			<form action="home.html">
+			<p class="text-center text-condensedLight">Crear una cuenta</p>
+			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" id="userName">
+				    <label class="mdl-textfield__label" for="userName">Nombre</label>
+				</div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="number" id="id">
+				    <label class="mdl-textfield__label" for="id">Identificación</label>
+				</div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				    <input class="mdl-textfield__input" type="email" id="email">
 				    <label class="mdl-textfield__label" for="email">Correo</label>
 				</div>
@@ -38,7 +46,7 @@
 				    <label class="mdl-textfield__label" for="pass">Contraseña</label>
 				</div>
 				<button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3F51B5; margin: 0 auto; display: block;">
-					INGRESAR
+					REGISTRARSE
 				</button>
 			</form>
 		</div>
