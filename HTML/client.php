@@ -2,6 +2,13 @@
 * Copyright 2018 Carlos Eduardo Alfaro Orellana
   https://www.youtube.com/c/CarlosAlfaro007
 -->
+
+<?php
+
+include("conexionBD.php");
+$conexion=conectar();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -224,69 +231,31 @@
 										</div>
 									</div>
 								</form>
-								<div class="mdl-list">
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>1. Client name</span>
-											<span class="mdl-list__item-sub-title">DNI</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>2. Client name</span>
-											<span class="mdl-list__item-sub-title">DNI</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>3. Client name</span>
-											<span class="mdl-list__item-sub-title">DNI</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>4. Client name</span>
-											<span class="mdl-list__item-sub-title">DNI</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>5. Client name</span>
-											<span class="mdl-list__item-sub-title">DNI</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>6. Client name</span>
-											<span class="mdl-list__item-sub-title">DNI</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
-									<li class="full-width divider-menu-h"></li>
-									<div class="mdl-list__item mdl-list__item--two-line">
-										<span class="mdl-list__item-primary-content">
-											<i class="zmdi zmdi-account mdl-list__item-avatar"></i>
-											<span>7. Client name</span>
-											<span class="mdl-list__item-sub-title">DNI</span>
-										</span>
-										<a class="mdl-list__item-secondary-action" href="#!"><i class="zmdi zmdi-more"></i></a>
-									</div>
+								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+									<thead>	
+										<tr>
+											<th class="mdl-data-table__cell--non-numeric">Nombre</th>
+											<th>Id</th>
+											<th>Correo</th>
+										</tr>
+									</thead>
+										<?php
+										$consulta = "SELECT nombre_u,documento,correo FROM usuarios";
+										$resultado = mysqli_query($conexion,$consulta);
+										while($mostrar=mysqli_fetch_array($resultado)){
+										?>
+									<tbody>
+										<tr>
+											<td><?php echo $mostrar['nombre_u']?></td>
+											<td><?php echo $mostrar['documento']?></td>
+											<td><?php echo $mostrar['correo']?></td>
+											<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+										</tr>
+										<?php
+										}
+										?>
+									</tbody>
+								</table>
 								</div>
 							</div>
 						</div>
