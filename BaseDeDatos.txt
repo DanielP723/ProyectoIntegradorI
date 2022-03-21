@@ -1,0 +1,55 @@
+
+##Creación tabla usuarios
+DROP TABLE IF EXISTS usuarios;
+CREATE TABLE usuarios(
+
+nombre_u VARCHAR(64) NOT NULL,
+documento BIGINT UNIQUE KEY NOT NULL,
+direccion VARCHAR(256) NOT NULL,
+telefono BIGINT NOT NULL,
+correo VARCHAR(64) NOT NULL,
+tipo INT NOT NULL DEFAULT '0',
+idUsuario INT AUTO_INCREMENT PRIMARY KEY  NOT NULL,
+creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+##Creación tabla productos
+DROP TABLE IF EXISTS productos;
+CREATE TABLE productos(
+
+nombre_p VARCHAR(64) UNIQUE KEY NOT NULL,
+descripcion VARCHAR(256) NOT NULL,
+stock INT NOT NULL,
+precio INT NOT NULL,
+idProductos INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+##Creación tabla detalleFactura
+DROP TABLE IF EXISTS detalleFactura;
+CREATE TABLE detalleFactura(
+
+precio INT NOT NULL,
+cantidad INT NOT NULL,
+productos_idProductos INT NOT NULL,
+CONSTRAINT fk_productos FOREIGN KEY (productos_idProductos)
+REFERENCES productos (idProductos),
+idDetalle INT AUTO_INCREMENT PRIMARY KEY NOT NULL
+
+);
+
+##Creación tabla factura
+DROP TABLE IF EXISTS factura;
+CREATE TABLE factura(
+
+usuario_idUsuario INT NOT NULL,
+detalleFactura_idDetalle INT NOT NULL,
+CONSTRAINT fk_usuario FOREIGN KEY (usuario_idUsuario)
+REFERENCES usuarios (idUsuario),
+CONSTRAINT fk_detalle FOREIGN KEY (detalleFactura_idDetalle)
+REFERENCES detallefactura (idDetalle),
+idFactura INT AUTO_INCREMENT PRIMARY KEY NOT NULL
+
+);
