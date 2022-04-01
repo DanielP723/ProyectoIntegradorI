@@ -2,6 +2,14 @@
 * Copyright 2018 Carlos Eduardo Alfaro Orellana
   https://www.youtube.com/c/CarlosAlfaro007
 -->
+
+<?php
+
+include("conexionBD.php");
+$conexion=conectar();
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -150,18 +158,12 @@
 								Nuevo Producto
 							</div>
 							<div class="full-width panel-content">
-								<form action="registrouser.php" method="post">
+								<form action="addproducts.php" method="post">
 									<div class="mdl-grid">
 										<div class="mdl-cell mdl-cell--12-col">
 									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN</legend><br>
 									    </div>
-										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-												<input class="mdl-textfield__input" type="number" pattern="-?[0-9- ]*(\.[0-9]+)?" id="Code" name='Id'>
-												<label class="mdl-textfield__label" for="Code">Código</label>
-												<span class="mdl-textfield__error">Error</span>
-											</div>
-										</div>
+										
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 												<input class="mdl-textfield__input" type="text" pattern="-?[A-Za-z0-9áéíóúÁÉÍÓÚ ]*(\.[0-9]+)?" id="NameProduct" name="nameProduct">
@@ -197,41 +199,7 @@
 												<span class="mdl-textfield__error">Error</span>
 											</div>
 										</div>
-										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; CATEGORÍA</legend><br>
-									    </div>
-										<div class="mdl-cell mdl-cell--12-col">
-											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input">
-													<option value="" disabled="" selected="">Seleccionar Categoría</option>
-													<option value="">Category 1</option>
-													<option value="">Category 2</option>
-												</select>
-											</div>
-										</div>
 										
-										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS EXTRA</legend><br>
-									    </div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<input type="date" class="mdl-textfield__input">
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<select class="mdl-textfield__input">
-													<option value="" disabled="" selected="">Select status</option>
-													<option value="">Disponible</option>
-													<option value="">No disponible</option>
-												</select>
-											</div>
-										</div>
-										<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-											<div class="mdl-textfield mdl-js-textfield">
-												<input type="file">
-											</div>
-										</div>
 									</div>
 									<p class="text-center">
 										<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addProduct">
@@ -247,91 +215,63 @@
 			</div>
 			<div class="mdl-tabs__panel" id="tabListProducts">
 				<div class="mdl-grid">
-					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
-						<form action="#">
-							<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-								<label class="mdl-button mdl-js-button mdl-button--icon" for="searchProduct">
-									<i class="zmdi zmdi-search"></i>
-								</label>
-								<div class="mdl-textfield__expandable-holder">
-									<input class="mdl-textfield__input" type="text" id="searchProduct">
-									<label class="mdl-textfield__label"></label>
-								</div>
+					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+						<div class="full-width panel mdl-shadow--2dp">
+							<div class="full-width panel-tittle bg-success text-center tittles">
+								Lista de Productos
 							</div>
-						</form>
-						<nav class="full-width menu-categories">
-							<ul class="list-unstyle text-center">
-								<li><a href="#!">Categoría 1</a></li>
-								<li><a href="#!">Categoría 2</a></li>
-								<li><a href="#!">Categoría 3</a></li>
-								<li><a href="#!">Categoría 4</a></li>
-							</ul>
-						</nav>
-						<div class="full-width text-center" style="padding: 30px 0;">
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Cantidad</small><br>
-									<small>Categoría</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Nombre del Producto
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
-								</div>
-							</div>
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Cantidad</small><br>
-									<small>Categoría</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Nombre del Producto
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
-								</div>
-							</div>
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Cantidad</small><br>
-									<small>Categoría</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Nombre del Producto
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
-								</div>
-							</div>
-							<div class="mdl-card mdl-shadow--2dp full-width product-card">
-								<div class="mdl-card__title">
-									<img src="assets/img/fontLogin.jpg" alt="product" class="img-responsive">
-								</div>
-								<div class="mdl-card__supporting-text">
-									<small>Cantidad</small><br>
-									<small>Categoría</small>
-								</div>
-								<div class="mdl-card__actions mdl-card--border">
-									Nombre del Producto
-									<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-										<i class="zmdi zmdi-more"></i>
-									</button>
+							<div class="full-width panel-content">
+								<form action="#">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+										<label class="mdl-button mdl-js-button mdl-button--icon" for="searchProduct">
+											<i class="zmdi zmdi-search"></i>
+										</label>
+										<div class="mdl-textfield__expandable-holder">
+											<input class="mdl-textfield__input" type="text" id="searchProduct">
+											<label class="mdl-textfield__label"></label>
+										</div>
+									</div>
+								</form>
+								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+									<thead>	
+										<tr>
+											<th class="mdl-data-table__cell--non-numeric">Nombre</th>
+											<th>Id</th>
+											<th>Cantidad</th>
+											<th>Precio</th>
+											<th>Modelo</th>
+											<th>Marca</th>
+										</tr>
+									</thead>
+										<?php
+										$consulta = "SELECT nombre_p,idProductos,stock,precio,modelo,marca FROM productos";
+										$resultado = mysqli_query($conexion,$consulta);
+										while($mostrar=mysqli_fetch_array($resultado)){
+										?>
+									<tbody>
+										<tr>
+											<td><?php echo $mostrar['nombre_p']?></td>
+											<td><?php echo $mostrar['idProductos']?></td>
+											<td><?php echo $mostrar['stock']?></td>
+											<td><?php echo $mostrar['precio']?></td>
+											<td><?php echo $mostrar['modelo']?></td>
+											<td><?php echo $mostrar['marca']?></td>
+											<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-edit"></i></button></td>
+											<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-delete"></i></button></td>
+										</tr>
+										<?php
+										}
+										?>
+									</tbody>
+								</table>
 								</div>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</section>
 </body>
