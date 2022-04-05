@@ -9,7 +9,7 @@ $marca=$_POST['Marca'];
 $precio=$_POST['Precio'];
 
 $conexion=conectar();
-$insertar = "INSERT INTO productos (nombre_p,stock,modelo,marca,precio) VALUES ('$nombre','$stock','$modelo','$marca','$precio')";
+$insertar = "INSERT INTO productos (nombre_p,stock,modelo,marca,precio,id_productos_eliminacion) VALUES ('$nombre','$stock','$modelo','$marca','$precio','0')";
 
 $resultado = mysqli_query($conexion,$insertar);
 

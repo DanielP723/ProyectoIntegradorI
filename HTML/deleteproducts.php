@@ -2,10 +2,10 @@
 
 include("conexionBD.php");
 
-$id=$_POST['idProductos'];
+$id=$_GET['id'];
 
 $conexion=conectar();
-$borrar = " DELETE FROM productos WHERE idProductos = $id ";
+$borrar = "DELETE FROM productos WHERE idProductos = $id";
 
 $resultado = mysqli_query($conexion,$borrar);
 

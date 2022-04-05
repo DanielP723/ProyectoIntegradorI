@@ -256,8 +256,11 @@ $conexion=conectar();
 											<td><?php echo $mostrar['precio']?></td>
 											<td><?php echo $mostrar['modelo']?></td>
 											<td><?php echo $mostrar['marca']?></td>
-											<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-edit"></i></button></td>
-											<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-delete"></i></button></td>
+											
+											<td><a href="editproducts.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-edit"></i></button></td>
+											
+											<td><a href="deleteproducts.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" name="delete"><i class="zmdi zmdi-delete"></i></button></td>
+											
 										</tr>
 										<?php
 										}
