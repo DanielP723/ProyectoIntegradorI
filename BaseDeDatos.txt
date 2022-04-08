@@ -1,18 +1,23 @@
 
 ##Creación tabla usuarios
-DROP TABLE IF EXISTS usuarios;
-CREATE TABLE usuarios(
-
-nombre_u VARCHAR(64) NOT NULL,
-documento BIGINT UNIQUE KEY NOT NULL,
-direccion VARCHAR(256) NOT NULL,
-telefono BIGINT NOT NULL,
-correo VARCHAR(64) NOT NULL,
-tipo INT NOT NULL DEFAULT '0',
-idUsuario INT AUTO_INCREMENT PRIMARY KEY  NOT NULL,
-creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+CREATE TABLE `usuarios` (
+	`nombre_u` VARCHAR(64) NOT NULL COLLATE 'latin1_swedish_ci',
+	`documento` BIGINT(20) NOT NULL,
+	`direccion` VARCHAR(256) NOT NULL COLLATE 'latin1_swedish_ci',
+	`telefono` BIGINT(20) NOT NULL,
+	`correo` VARCHAR(64) NOT NULL COLLATE 'latin1_swedish_ci',
+	`tipo` TINYINT(4) NOT NULL DEFAULT '0',
+	`idUsuario` INT(11) NOT NULL AUTO_INCREMENT,
+	`creacion` TIMESTAMP NOT NULL DEFAULT current_timestamp(),
+	`modificacion` TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+	`activo` TINYINT(4) NULL DEFAULT '0',
+	PRIMARY KEY (`idUsuario`) USING BTREE,
+	UNIQUE INDEX `documento` (`documento`) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=4
+;
 
 ##Creación tabla productos
 DROP TABLE IF EXISTS productos;
@@ -53,3 +58,42 @@ REFERENCES detallefactura (idDetalle),
 idFactura INT AUTO_INCREMENT PRIMARY KEY NOT NULL
 
 );
+
+
+##Procedimiento signUp
+
+CREATE PROCEDURE `signupUser`(
+	IN `nomb` VARCHAR(64),
+	IN `dni` BIGINT,
+	IN `dir` VARCHAR(64),
+	IN `tel` BIGINT,
+	IN `email` VARCHAR(64)
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
+BEGIN
+	INSERT INTO usuarios (nombre_u,documento,direccion,telefono,correo) VALUES (nomb,dni,dir,tel,email);
+END
+
+##Procedimiento delete
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteUser`(
+	IN `dni` INT
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
+BEGIN
+UPDATE usuarios SET activo = 1 WHERE documento = dni;
+END
+
+
+##Vista usuarios activos 
+
+ALTER ALGORITHM = MERGE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usuarios_activos` AS SELECT * FROM usuarios 
+WHERE activo = 0  ;
