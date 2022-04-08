@@ -9,7 +9,7 @@ $email=$_POST['emailUser'];
 $direccion=$_POST['addressUser'];
 
 $conexion=conectar();
-$insertar = "INSERT INTO usuarios (nombre_u,documento,direccion,telefono,correo) VALUES ('$nombre','$identificacion','$direccion','$telefono','$email')";
+$insertar = "CALL signupUser('$nombre','$identificacion','$direccion','$telefono','$email')";
 
 $resultado = mysqli_query($conexion,$insertar);
 

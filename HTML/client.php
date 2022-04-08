@@ -142,7 +142,7 @@ $conexion=conectar();
 			</div>
 			<div class="full-width header-well-text">
 				<p class="text-condensedLight">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde aut nulla accusantium minus corporis accusamus fuga harum natus molestias necessitatibus.
+					Clientes registrados en Concecionario Cortes.
 				</p>
 			</div>
 		</section>
@@ -220,27 +220,29 @@ $conexion=conectar();
 								List Clients
 							</div>
 							<div class="full-width panel-content">
-								<form action="#">
+								<form action="registrouser.php" method="post">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
 										<label class="mdl-button mdl-js-button mdl-button--icon" for="searchClient">
 											<i class="zmdi zmdi-search"></i>
 										</label>
 										<div class="mdl-textfield__expandable-holder">
-											<input class="mdl-textfield__input" type="text" id="searchClient">
+											<input class="mdl-textfield__input" type="search" placeholder="Documento" pattern="-?[0-9]*(\.[0-9]+)?" id="searchClient">
 											<label class="mdl-textfield__label"></label>
 										</div>
 									</div>
 								</form>
+								<div class="table-responsive">
 								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
 									<thead>	
 										<tr>
 											<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-											<th>Id</th>
+											<th>Documento</th>
 											<th>Correo</th>
+											<th>Acciones</th>
 										</tr>
 									</thead>
 										<?php
-										$consulta = "SELECT nombre_u,documento,correo FROM usuarios";
+										$consulta = "SELECT nombre_u,documento,correo FROM usuarios_activos";
 										$resultado = mysqli_query($conexion,$consulta);
 										while($mostrar=mysqli_fetch_array($resultado)){
 										?>
@@ -249,17 +251,22 @@ $conexion=conectar();
 											<td><?php echo $mostrar['nombre_u']?></td>
 											<td><?php echo $mostrar['documento']?></td>
 											<td><?php echo $mostrar['correo']?></td>
-											<td><button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-more"></i></button></td>
+
+
+											<td><a href="editclient.php?id=<?php echo $mostrar["documento"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-edit"></i></button></td>
+											
+											<td><a href="deleteclient.php?id=<?php echo $mostrar["documento"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" name="delete"><i class="zmdi zmdi-delete"></i></button></td>
+											
 										</tr>
 										<?php
 										}
 										?>
 									</tbody>
 								</table>
+									</div>
 								</div>
 							</div>
 						</div>
-						
 					</div>
 				</div>
 			</div>

@@ -4,7 +4,7 @@ function conectar(){
 
     $user="root";
     $pass="informatica";
-    $server="localhost:3306";
+    $server="localhost:3307";
     $db="concesionario";
     $conexion=mysqli_connect($server,$user,$pass,$db);
 
