@@ -1,4 +1,3 @@
-
 ##Creación tabla usuarios
 CREATE TABLE `usuarios` (
 	`nombre_u` VARCHAR(64) NOT NULL COLLATE 'latin1_swedish_ci',
@@ -30,6 +29,7 @@ precio INT NOT NULL,
 idProductos INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+activo TINYINT(4) NULL DEFAULT '0'
 );
 
 ##Creación tabla detalleFactura
@@ -56,7 +56,6 @@ REFERENCES usuarios (idUsuario),
 CONSTRAINT fk_detalle FOREIGN KEY (detalleFactura_idDetalle)
 REFERENCES detallefactura (idDetalle),
 idFactura INT AUTO_INCREMENT PRIMARY KEY NOT NULL
-
 );
 
 
@@ -97,3 +96,29 @@ END
 
 ALTER ALGORITHM = MERGE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usuarios_activos` AS SELECT * FROM usuarios 
 WHERE activo = 0  ;
+
+#Vista Productos Activos
+
+CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `productos_activos` 
+AS SELECT * FROM productos 
+WHERE eliminacion is NULL AND id_productos_eliminacion = 0  ;
+
+#Vista Productos Eliminados
+
+CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `productos_eliminados` 
+AS SELECT * FROM productos 
+WHERE eliminacion IS NOT  NULL AND id_productos_eliminacion > 0;
+
+##Procedimiento delete productos
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProducts`(
+	IN `id` INT
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT ''
+BEGIN
+UPDATE productos SET activo = 1 WHERE idProductos = id;
+END
