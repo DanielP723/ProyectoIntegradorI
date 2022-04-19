@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS concesionario;
+USE concesionario;
+
 ##Creación tabla usuarios
 CREATE TABLE `usuarios` (
 	`nombre_u` VARCHAR(64) NOT NULL COLLATE 'latin1_swedish_ci',
@@ -20,17 +23,23 @@ AUTO_INCREMENT=4
 
 ##Creación tabla productos
 DROP TABLE IF EXISTS productos;
-CREATE TABLE productos(
-
-nombre_p VARCHAR(64) UNIQUE KEY NOT NULL,
-descripcion VARCHAR(256) NOT NULL,
-stock INT NOT NULL,
-precio INT NOT NULL,
-idProductos INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-activo TINYINT(4) NULL DEFAULT '0'
-);
+CREATE TABLE productos (
+	nombre_p VARCHAR(64) NOT NULL COLLATE 'utf8mb3_general_ci',
+	modelo VARCHAR(256) NOT NULL COLLATE 'utf8mb3_general_ci',
+	marca VARCHAR(256) NOT NULL COLLATE 'utf8mb3_general_ci',
+	stock INT(11) NOT NULL,
+	precio INT(11) NOT NULL,
+	idProductos INT(11) NOT NULL AUTO_INCREMENT,
+	creacion TIMESTAMP NOT NULL DEFAULT current_timestamp(),
+	modificacion TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+	activo TINYINT(4) NULL DEFAULT '0',
+	PRIMARY KEY (idProductos) USING BTREE,
+	UNIQUE INDEX nombre_p (nombre_p) USING BTREE
+)
+COLLATE='utf8mb3_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=3
+;
 
 ##Creación tabla detalleFactura
 DROP TABLE IF EXISTS detalleFactura;
@@ -58,6 +67,18 @@ REFERENCES detallefactura (idDetalle),
 idFactura INT AUTO_INCREMENT PRIMARY KEY NOT NULL
 );
 
+##Creación tabla historico de precios
+CREATE TABLE historico_precios (
+	ID INT(11) NOT NULL AUTO_INCREMENT,
+	nombre_p VARCHAR(64) NOT NULL COLLATE 'utf8mb3_general_ci',
+	idProductos INT(50) NOT NULL,
+	precio INT(50) NOT NULL,
+	modificacion TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+	PRIMARY KEY (ID) USING BTREE
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
 
 ##Procedimiento signUp
 
@@ -90,26 +111,32 @@ COMMENT ''
 BEGIN
 UPDATE usuarios SET activo = 1 WHERE documento = dni;
 END
+;
 
+#Vista Usuarios activos 
 
-##Vista usuarios activos 
+CREATE ALGORITHM = MERGE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usuarios_activos` AS SELECT * FROM usuarios 
+WHERE activo = 0;
 
-ALTER ALGORITHM = MERGE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usuarios_activos` AS SELECT * FROM usuarios 
-WHERE activo = 0  ;
+#Vista Usuarios Eliminados
+
+CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `usuarios_eliminados` 
+AS SELECT * FROM usuarios 
+WHERE activo > 0;
 
 #Vista Productos Activos
 
 CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `productos_activos` 
 AS SELECT * FROM productos 
-WHERE eliminacion is NULL AND id_productos_eliminacion = 0  ;
+WHERE activo = 0;
 
 #Vista Productos Eliminados
 
 CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `productos_eliminados` 
 AS SELECT * FROM productos 
-WHERE eliminacion IS NOT  NULL AND id_productos_eliminacion > 0;
+WHERE activo > 0;
 
-##Procedimiento delete productos
+#Procedimiento delete productos
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProducts`(
 	IN `id` INT
@@ -121,4 +148,17 @@ SQL SECURITY DEFINER
 COMMENT ''
 BEGIN
 UPDATE productos SET activo = 1 WHERE idProductos = id;
-END
+END;
+
+
+## Trigger para guardar cambios
+CREATE TRIGGER historico_precio
+BEFORE UPDATE ON productos 
+FOR EACH ROW 
+INSERT INTO historico_precios(nombre_p, idProductos, precio) VALUES (OLD.nombre_p, OLD.idProductos, NEW.precio);
+
+## Trigger para guardar nuevo producto en cambios
+CREATE TRIGGER nuevo_producto
+AFTER INSERT ON productos 
+FOR EACH ROW 
+INSERT INTO historico_precios(nombre_p, idProductos, precio) VALUES (NEW.nombre_p, NEW.idProductos, NEW.precio);
