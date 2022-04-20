@@ -60,10 +60,10 @@ CREATE TABLE factura(
 
 usuario_idUsuario INT NOT NULL,
 detalleFactura_idDetalle INT NOT NULL,
-CONSTRAINT fk_usuario FOREIGN KEY (usuario_idUsuario)
+CONSTRAINT fk_usuario FOREIGN KEY (usuario_idUsuario),
 REFERENCES usuarios (idUsuario),
 CONSTRAINT fk_detalle FOREIGN KEY (detalleFactura_idDetalle)
-REFERENCES detallefactura (idDetalle),
+REFERENCES detalleFactura (idDetalle),
 idFactura INT AUTO_INCREMENT PRIMARY KEY NOT NULL
 );
 
