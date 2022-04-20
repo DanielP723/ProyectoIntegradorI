@@ -80,7 +80,10 @@ COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 ;
 
+USE concesionario;
+
 ##Procedimiento signUp
+DELIMITER //
 
 CREATE PROCEDURE `signupUser`(
 	IN `nomb` VARCHAR(64),
@@ -96,9 +99,15 @@ SQL SECURITY DEFINER
 COMMENT ''
 BEGIN
 	INSERT INTO usuarios (nombre_u,documento,direccion,telefono,correo) VALUES (nomb,dni,dir,tel,email);
-END
+END;
 
-##Procedimiento delete
+//
+
+DELIMITER;
+
+
+##Procedimiento delete user
+DELIMITER //
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteUser`(
 	IN `dni` INT
@@ -110,33 +119,50 @@ SQL SECURITY DEFINER
 COMMENT ''
 BEGIN
 UPDATE usuarios SET activo = 1 WHERE documento = dni;
-END
-;
+END;
+//
+DELIMITER;
 
 #Vista Usuarios activos 
 
+DELIMITER //
+
 CREATE ALGORITHM = MERGE DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usuarios_activos` AS SELECT * FROM usuarios 
 WHERE activo = 0;
+//
+DELIMITER;
 
 #Vista Usuarios Eliminados
 
+DELIMITER //
 CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `usuarios_eliminados` 
 AS SELECT * FROM usuarios 
 WHERE activo > 0;
+//
+DELIMITER;
 
 #Vista Productos Activos
 
+DELIMITER //
 CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `productos_activos` 
 AS SELECT * FROM productos 
 WHERE activo = 0;
+//
+DELIMITER;
 
 #Vista Productos Eliminados
+
+DELIMITER //
 
 CREATE ALGORITHM = MERGE SQL SECURITY DEFINER VIEW `productos_eliminados` 
 AS SELECT * FROM productos 
 WHERE activo > 0;
+//
+DELIMITER;
 
 #Procedimiento delete productos
+
+DELIMITER //
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProducts`(
 	IN `id` INT
@@ -150,15 +176,29 @@ BEGIN
 UPDATE productos SET activo = 1 WHERE idProductos = id;
 END;
 
+//
+
+DELIMITER;
+
 
 ## Trigger para guardar cambios
+DELIMITER //
 CREATE TRIGGER historico_precio
 BEFORE UPDATE ON productos 
 FOR EACH ROW 
 INSERT INTO historico_precios(nombre_p, idProductos, precio) VALUES (OLD.nombre_p, OLD.idProductos, NEW.precio);
 
+//
+DELIMITER;
+
 ## Trigger para guardar nuevo producto en cambios
+
+DELIMITER //
+
 CREATE TRIGGER nuevo_producto
 AFTER INSERT ON productos 
 FOR EACH ROW 
 INSERT INTO historico_precios(nombre_p, idProductos, precio) VALUES (NEW.nombre_p, NEW.idProductos, NEW.precio);
+
+//
+DELIMITER;
