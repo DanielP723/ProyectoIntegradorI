@@ -25,11 +25,11 @@ $conexion = conectar();
 
 $salida = "";
 
-$query = "SELECT nombre_p,idProductos,stock,precio,modelo,marca FROM productos ";
+$query = "SELECT nombre_p,idProductos,stock,precio,modelo,marca FROM productos_activos ";
 
 if(isset($_POST['consulta'])){
 	$q = $conexion->real_escape_string($_POST['consulta']);
-	$query= "SELECT nombre_p,idProductos,stock,precio,modelo,marca FROM productos WHERE (nombre_p LIKE '%".$q."%' OR idProductos LIKE '%".$q."%' OR modelo LIKE '%".$q."%' OR marca LIKE '%".$q."%')";
+	$query= "SELECT nombre_p,idProductos,stock,precio,modelo,marca FROM productos_activos WHERE (nombre_p LIKE '%".$q."%' OR idProductos LIKE '%".$q."%' OR modelo LIKE '%".$q."%' OR marca LIKE '%".$q."%')";
 }
 $resultado = $conexion->query($query);
 
@@ -43,6 +43,9 @@ if($resultado->num_rows > 0){
 					<th>Precio</th>
                     <th>Modelo</th>
                     <th>Marca</th>
+                    <th>Histórico</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
 					
 				</tr>
 				</thead>
@@ -56,9 +59,9 @@ if($resultado->num_rows > 0){
 		<td>".$fila['precio']."</td>
 		<td>".$fila['modelo']."</td>
 		<td>".$fila['marca']."</td>
-        <td><a href='pricehistory.php' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' name='change_history'><i class='zmdi zmdi-calendar-note'></i></button></td>
-		<td><a href='editclient.php' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-edit'></i></button></td>
-		<td><a href='deleteclient.php' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-delete'></i></button></td>
+        <td><a href='pricehistory.php?id=$fila[idProductos]'' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect' name='change_history'><i class='zmdi zmdi-calendar-note'></i></button></td>
+		<td><a href='editproducts.php?id=$fila[idProductos]'' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-edit'></i></button></td>
+		<td><a href='deleteproducts.php?id=$fila[idProductos]'' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-delete'></i></button></td>
 		";
 		
 	}

@@ -40,19 +40,20 @@ if($resultado->num_rows > 0){
 					<th class='mdl-data-table__cell--non-numeric'>Nombre</th>
 					<th>Documento</th>
 					<th>Correo</th>
-					<th>Acciones</th>
+					<th>Editar</th>
+					<th>Borrar</th>
 					
 				</tr>
 				</thead>
 				<tbody>";
 	
-	while($fila = $resultado->fetch_assoc()){
+	while($fila=mysqli_fetch_array($resultado)){
 		$salida.="<tr>
 		<td>".$fila['nombre_u']."</td>
 		<td>".$fila['documento']."</td>
 		<td>".$fila['correo']."</td>
-		<td><a href='editclient.php' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-edit'></i></button></td>
-		<td><a href='deleteclient.php' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-delete'></i></button></td>
+		<td><a href='editclient.php?id=$fila[documento]' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-edit' ></i></button></td>
+		<td><a href='deleteclient.php?id=$fila[documento]' class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'><i class='zmdi zmdi-delete'></i></button></td>
 		";
 		
 	}
