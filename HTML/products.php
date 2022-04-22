@@ -137,11 +137,11 @@ $conexion=conectar();
 		</div>
 		<section class="full-width header-well">
 			<div class="full-width header-well-icon">
-				<i class="zmdi zmdi-washing-machine"></i>
+				<i class="zmdi zmdi-car"></i>
 			</div>
 			<div class="full-width header-well-text">
 				<p class="text-condensedLight">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde aut nulla accusantium minus corporis accusamus fuga harum natus molestias necessitatibus.
+					Vehículos disponibles en Concesionario Cortés
 				</p>
 			</div>
 		</section>
@@ -161,7 +161,7 @@ $conexion=conectar();
 								<form action="addproducts.php" method="post">
 									<div class="mdl-grid">
 										<div class="mdl-cell mdl-cell--12-col">
-									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; INFORMACIÓN</legend><br>
+									        <legend class="text-condensedLight"><i class="zmdi zmdi-border-color"></i> &nbsp; DATOS PRODUCTOS </legend><br>
 									    </div>
 										
 										<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
@@ -256,11 +256,13 @@ $conexion=conectar();
 											<td><?php echo $mostrar['precio']?></td>
 											<td><?php echo $mostrar['modelo']?></td>
 											<td><?php echo $mostrar['marca']?></td>
+
+											<td><a href="pricehistory.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" name="change_history"><i class="zmdi zmdi-calendar-note"></i></button></td>
 											
 											<td><a href="editproducts.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-edit"></i></button></td>
 											
 											<td><a href="deleteproducts.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" name="delete"><i class="zmdi zmdi-delete"></i></button></td>
-											
+
 										</tr>
 										<?php
 										}

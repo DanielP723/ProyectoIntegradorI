@@ -142,7 +142,7 @@ $conexion=conectar();
 			</div>
 			<div class="full-width header-well-text">
 				<p class="text-condensedLight">
-					Clientes registrados en Concecionario Cortes.
+					Clientes registrados en Concesionario Cortés.
 				</p>
 			</div>
 		</section>
