@@ -21,7 +21,7 @@ $conexion=conectar();
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Concecionario cortes</title>
+    <title>Concesionario cortes</title>
 
 
 
@@ -60,7 +60,7 @@ $conexion=conectar();
     <div class="container">
       <a href="index.php" class="navbar-brand d-flex align-items-center">
         <img src="images/favicon.ico" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24" alt="">
-        <strong>Concecionario Cortes</strong>
+        <strong>Concesionario Cortes</strong>
       </a>
 
       <a href="catalogo.php" class="navbar-brand d-flex align-items-center">

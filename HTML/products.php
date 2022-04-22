@@ -28,6 +28,7 @@ $conexion=conectar();
 	<script src="js/sweetalert2.min.js" ></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js" ></script>
 	<script src="js/main.js" ></script>
+	<script src="js/search-product.js" ></script>
 </head>
 <body>
 
@@ -227,48 +228,15 @@ $conexion=conectar();
 											<i class="zmdi zmdi-search"></i>
 										</label>
 										<div class="mdl-textfield__expandable-holder">
-											<input class="mdl-textfield__input" type="text" id="searchProduct">
+											<input class="mdl-textfield__input" type="text" id="searchProduct" placeholder="Buscar">
 											<label class="mdl-textfield__label"></label>
 										</div>
 									</div>
 								</form>
-								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
-									<thead>	
-										<tr>
-											<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-											<th>Id</th>
-											<th>Cantidad</th>
-											<th>Precio</th>
-											<th>Modelo</th>
-											<th>Marca</th>
-										</tr>
-									</thead>
-										<?php
-										$consulta = "SELECT nombre_p,idProductos,stock,precio,modelo,marca FROM productos";
-										$resultado = mysqli_query($conexion,$consulta);
-										while($mostrar=mysqli_fetch_array($resultado)){
-										?>
-									<tbody>
-										<tr>
-											<td><?php echo $mostrar['nombre_p']?></td>
-											<td><?php echo $mostrar['idProductos']?></td>
-											<td><?php echo $mostrar['stock']?></td>
-											<td><?php echo $mostrar['precio']?></td>
-											<td><?php echo $mostrar['modelo']?></td>
-											<td><?php echo $mostrar['marca']?></td>
 
-											<td><a href="pricehistory.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" name="change_history"><i class="zmdi zmdi-calendar-note"></i></button></td>
-											
-											<td><a href="editproducts.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-edit"></i></button></td>
-											
-											<td><a href="deleteproducts.php?id=<?php echo $mostrar["idProductos"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" name="delete"><i class="zmdi zmdi-delete"></i></button></td>
+								<div class="table-responsive"  id="tableProducts">
+									</div>
 
-										</tr>
-										<?php
-										}
-										?>
-									</tbody>
-								</table>
 								</div>
 							</div>
 						</div>

@@ -2,6 +2,14 @@
 * Copyright 2018 Carlos Eduardo Alfaro Orellana
   https://www.youtube.com/c/CarlosAlfaro007
 -->
+
+<?php
+
+include("conexionBD.php");
+$conexion=conectar();
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

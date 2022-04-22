@@ -9,6 +9,7 @@ include("conexionBD.php");
 $conexion=conectar();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,6 +28,8 @@ $conexion=conectar();
 	<script src="js/sweetalert2.min.js" ></script>
 	<script src="js/jquery.mCustomScrollbar.concat.min.js" ></script>
 	<script src="js/main.js" ></script>
+	<script src="js/search-client.js" ></script>
+
 </head>
 <body>
 	<!-- navLateral -->
@@ -220,49 +223,18 @@ $conexion=conectar();
 								List Clients
 							</div>
 							<div class="full-width panel-content">
-								<form action="registrouser.php" method="post">
+								<form action="searchclient.php" method="post">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
 										<label class="mdl-button mdl-js-button mdl-button--icon" for="searchClient">
 											<i class="zmdi zmdi-search"></i>
 										</label>
 										<div class="mdl-textfield__expandable-holder">
-											<input class="mdl-textfield__input" type="search" placeholder="Documento" pattern="-?[0-9]*(\.[0-9]+)?" id="searchClient">
+											<input class="mdl-textfield__input" type="search" placeholder="Buscar" pattern="-?[0-9]*(\.[0-9]+)?" id="searchClient">
 											<label class="mdl-textfield__label"></label>
 										</div>
 									</div>
 								</form>
-								<div class="table-responsive">
-								<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
-									<thead>	
-										<tr>
-											<th class="mdl-data-table__cell--non-numeric">Nombre</th>
-											<th>Documento</th>
-											<th>Correo</th>
-											<th>Acciones</th>
-										</tr>
-									</thead>
-										<?php
-										$consulta = "SELECT nombre_u,documento,correo FROM usuarios_activos";
-										$resultado = mysqli_query($conexion,$consulta);
-										while($mostrar=mysqli_fetch_array($resultado)){
-										?>
-									<tbody>
-										<tr>
-											<td><?php echo $mostrar['nombre_u']?></td>
-											<td><?php echo $mostrar['documento']?></td>
-											<td><?php echo $mostrar['correo']?></td>
-
-
-											<td><a href="editclient.php?id=<?php echo $mostrar["documento"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"><i class="zmdi zmdi-edit"></i></button></td>
-											
-											<td><a href="deleteclient.php?id=<?php echo $mostrar["documento"];?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" name="delete"><i class="zmdi zmdi-delete"></i></button></td>
-											
-										</tr>
-										<?php
-										}
-										?>
-									</tbody>
-								</table>
+									<div class="table-responsive"  id="tableClient">
 									</div>
 								</div>
 							</div>
