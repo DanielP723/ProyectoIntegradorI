@@ -87,28 +87,6 @@ $conexion=conectar();
 							</div>
 						</a>
 					</li>
-					<li class="full-width divider-menu-h"></li>
-					<li class="full-width">
-						<a href="sales.php" class="full-width">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-shopping-cart"></i>
-							</div>
-							<div class="navLateral-body-cr">
-								VENTAS
-							</div>
-						</a>
-					</li>
-					<li class="full-width divider-menu-h"></li>
-					<li class="full-width">
-						<a href="inventory.php" class="full-width">
-							<div class="navLateral-body-cl">
-								<i class="zmdi zmdi-store"></i>
-							</div>
-							<div class="navLateral-body-cr">
-								INVENTARIO
-							</div>
-						</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
